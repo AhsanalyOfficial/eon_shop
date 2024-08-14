@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      charset="utf-8"
+    ></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Portfolio</title>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header" id="header">
+        <div class="logo">
+          <img src="img/header-logo.png" alt="" />
+        </div>
+        <div class="navbar" id="navbar1">
+          <a href="index.html" data-replace="HOME" id="navbar"
+            ><span>HOME</span></a
+          >
+          <a href="#work" data-replace="WORKS"><span>WORKS</span></a>
+          <a href="#pages" data-replace="PAGES"><span>PAGES</span></a>
+          <a href="about-us.html" data-replace="ABOUT US"
+            ><span>ABOUT US</span></a
+          >
+          <a href="contact-us.html" data-replace="CONTACT"
+            ><span>CONTACT</span></a
+          >
+          <a href="auto-complete.html" data-replace="SHOP" id="shopi"
+            ><span>SHOP</span></a
+          >
+        </div>
+        <div class="icon">
+          <!-- <img src="img/bright-dark.png" alt="" class="sun" id="sunny" onclick="changeColor()"> -->
+          <img src="img/bright-dark.png" alt="" class="sun" id="sunny" />
+          <img
+            src="img/search-dark.png"
+            alt=""
+            class="search"
+            id="search"
+            onclick="openNav()"
+          />
+        </div>
+      </div>
+    </header>
+    <!--  -->
+
+    <!-- search -->
+    <div class="search-container" id="search-container">
+      <div class="container">
+        <div class="searchInput">
+          <input type="text" id="search-input" placeholder="Search here" />
+          <ul id="search-results"></ul>
+          <div class="icon">
+            <ion-icon
+              name="search-outline"
+              class="search"
+              id="search"
+            ></ion-icon>
+          </div>
+        </div>
+        <div class="cross">
+          <div class="cross-icon">
+            <ion-icon name="close-outline" onclick="closeNav()"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- Homepage -->
+    <div class="home-container">
+      <div class="home-img">
+        <img src="img/home-img.jpg" alt="" />
+        <div class="home-content" id="home-content">
+          <p class="sale">SALE UP TO 30% OFF</p>
+          <h1>Apple Watch Series</h1>
+          <p>
+            Feature packed at a better value than ever Powerful sensors to
+            monitor your fitness
+          </p>
+          <a href="" type="button">Shop Now</a>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- Categories -->
+    <div class="categories-container">
+      <h1>Trending Categories</h1>
+      <div class="categories">
+        <div class="item">
+          <img src="img/cat-1.avif" alt="" />
+          <p>IPhone</p>
+        </div>
+        <div class="item">
+          <img src="img/cat-2.avif" alt="" />
+          <p>Mini Speakers</p>
+        </div>
+        <div class="item">
+          <img src="img/cat-3.avif" alt="" />
+          <p>Tablets</p>
+        </div>
+        <div class="item">
+          <img src="img/cat-4.avif" alt="" />
+          <p>Headphones</p>
+        </div>
+        <div class="item">
+          <img src="img/cat-5.avif" alt="" />
+          <p>Laptop</p>
+        </div>
+        <div class="item">
+          <img src="img/cat-6.avif" alt="" />
+          <p>Accessories</p>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- Gallery -->
+    <div class="gallery" id="gallery">
+      <div class="item1">
+        <img src="img/security.jpg" alt="" />
+        <div class="overlay">
+          <p>SECURITY SMART CAMERA</p>
+          <h1>Just Starting At $850 Hurry up!</h1>
+          <button class="btn">Shop Now</button>
+        </div>
+      </div>
+      <div class="item1">
+        <img src="img/game.jpg" alt="" />
+        <div class="overlay">
+          <p>Just Starting at $850 Hurry up!</p>
+          <h1>ENTERTAINMENT & GAMES</h1>
+          <button class="btn">Shop Now</button>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- New Categories -->
+    <div class="new-categories-container">
+      <h1>Latest Products</h1>
+      <div class="new-categories">
+        <div class="item hover-switch">
+          <img src="img/cat-1.avif" alt="" /><img
+            src="img/n-cat-1.webp"
+            alt=""
+          />
+          <div class="content">
+            <div class="star-icon">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+            </div>
+            <p>Home Entertainment</p>
+            <h2>$79.00 USD</h2>
+          </div>
+        </div>
+        <div class="item hover-switch">
+          <img src="img/cat-1.avif" alt="" /><img
+            src="img/n-cat-1.webp"
+            alt=""
+          />
+          <div class="content">
+            <div class="star-icon">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+            </div>
+            <p>Home Entertainment</p>
+            <h2>$79.00 USD</h2>
+          </div>
+        </div>
+        <div class="item hover-switch">
+          <img src="img/cat-1.avif" alt="" /><img
+            src="img/n-cat-1.webp"
+            alt=""
+          />
+          <div class="content">
+            <div class="star-icon">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+            </div>
+            <p>Home Entertainment</p>
+            <h2>$79.00 USD</h2>
+          </div>
+        </div>
+        <div class="item hover-switch">
+          <img src="img/cat-1.avif" alt="" /><img
+            src="img/n-cat-1.webp"
+            alt=""
+          />
+          <div class="content">
+            <div class="star-icon">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+            </div>
+            <p>Home Entertainment</p>
+            <h2>$79.00 USD</h2>
+          </div>
+        </div>
+        <div class="item hover-switch">
+          <img src="img/cat-1.avif" alt="" /><img
+            src="img/n-cat-1.webp"
+            alt=""
+          />
+          <div class="content">
+            <div class="star-icon">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+            </div>
+            <p>Home Entertainment</p>
+            <h2>$79.00 USD</h2>
+          </div>
+        </div>
+        <div class="item hover-switch">
+          <img src="img/cat-1.avif" alt="" /><img
+            src="img/n-cat-1.webp"
+            alt=""
+          />
+          <div class="content">
+            <div class="star-icon">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+            </div>
+            <p>Home Entertainment</p>
+            <h2>$79.00 USD</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    <!-- Coming Soon -->
+    <div class="coming-div">
+      <div class="coming-img">
+        <img src="img/smart-1.png" alt="" />
+        <img src="img/smart-3.png" alt="" />
+        <img src="img/smart-2.png" alt="" />
+        <div class="coming-overlay">
+          <h1>Coming Soon</h1>
+          <p>30 NOV - 03 DEC</p>
+          <h3>The wait is on Watch Series 5</h3>
+          <h2>$99.00</h2>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    <!-- Footer -->
+    <div class="main-footer">
+      <div class="f-contact">
+        <h2>Contact Us</h2>
+        <p>Drou Demo Store</p>
+        <p>No. 1259 Freedom, New York</p>
+        <p>United States</p>
+        <p>+91-987654321</p>
+        <p>demo@exampledemo.com</p>
+      </div>
+      <div class="f-information">
+        <h2>Information</h2>
+        <p>Product Support</p>
+        <p>Checkout</p>
+        <p>License Policy</p>
+        <p>Affiliate</p>
+      </div>
+      <div class="f-service">
+        <h2>Services</h2>
+        <p>Help Center</p>
+        <p>Redeem Voucher</p>
+        <p>Contact Us</p>
+        <p>Policies & Rules</p>
+      </div>
+      <div class="f-app">
+        <h2>Download App</h2>
+        <p>
+          Download our App and get extra 15% Discount on your first Order..!
+        </p>
+        <!-- <div class="down-link">
+                <img src="img/page-header.png" alt="">
+                <img src="img/play-app-store.png" alt="">
+            </div> -->
+      </div>
+    </div>
+    <!--  -->
+
+    <!-- Javascript Icon Link -->
+    <script>
+      if (!localStorage.getItem("user")) {
+        window.location.href = "signin-page.html";
+      }
+    </script>
+    <script src="js/script.js"></script>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/2ad8671af9.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--  -->
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <title>SignIn</title>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="content">
+        <h1>Sign In</h1>
+        <form action="" class="form">
+          <label for="">Email</label>
+          <input type="email" name="" id="email" required />
+          <label for="">Password</label>
+          <input type="password" name="" id="password" required />
+          <div class="checkbox">
+            <input type="checkbox" name="" id="" required />
+            <label for=""
+              >I've read an agree with Terms of Service and our privacy
+              policy</label
+            >
+          </div>
+          <button type="submit">Sign In</button>
+          <p class="account">Don't have an account?<a href="signup.html"> Sign Up</a></p>
+        </form>
+      </div>
+      <div class="logo">
+        <img src="img/signin-logo.png" alt="" />
+      </div>
+    </div>
+  </body>
+  <script>
+    document.querySelector(".form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+      if (
+        storedUser &&
+        storedUser.email === email &&
+        storedUser.password === password
+      ) {
+        alert("Login successful!");
+        window.location.href = "index.html";
+      } else {
+        alert("Error: Invalid email or password!");
+      }
+    });
+  </script>
+</html>

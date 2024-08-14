@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: poppins;
+    }
+
+    .get-header {
+        width: 100%;
+        height: 75px;
+        display: flex;
+        align-items: center;
+    }
+
+    .get-header a {
+        display: flex;
+        align-items: center;
+        padding: 0 100px;
+        font-size: 1.5em;
+        color: #000;
+    }
+
+    .get-header a:hover {
+        color: red;
+    }
+
+    .get-header a:hover .left-arrow {
+        padding-right: 0;
+        padding-left: 100px;
+        transition: 1s ease;
+        color: red;
+    }
+
+    .get-header a .left-arrow {
+        padding-right: 20px;
+    }
+
+    .get-homepage {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #6aaeff;
+    }
+
+    .get-homepage img {
+        justify-content: center;
+        width: 600px;
+        height: 400px;
+        background-color: #fff;
+    }
+
+    .get-homepage .get-overlay h1 {
+        font-size: 3.5em;
+    }
+
+    .get-homepage .get-overlay p {
+        font-size: 1.5em;
+    }
+
+    .get-homepage .get-overlay {
+        width: 600px;
+        padding: 0 0 0 100px;
+        /* border: 1px solid red; */
+    }
+
+    .get-homepage .get-overlay button {
+        width: 150px;
+        padding: 10px 8px;
+        border-radius: 10px;
+        border: none;
+        margin: 20px 0;
+        background-color: #ffff;
+        font-weight: medium;
+        cursor: pointer;
+        font-size: 1em;
+    }
+
+    .get-homepage .get-overlay button:hover {
+        background-color: #3d3d3b;
+        color: #fff;
+    }
+
+    .main {
+        width: 100%;
+        height: 120vh;
+        background-color: #6c75b8;
+    }
+
+    .main1 {
+        width: 100%;
+        height: 120vh;
+        background-color: #6c75b8;
+    }
+
+    .main-get {
+        width: 100%;
+        height: auto;
+        padding: 40px 250px;
+        /* background-color: #e1e3e5; */
+    }
+
+    .main-get h1 {
+        font-size: 2.25em;
+    }
+
+    .main-get p {
+        font-size: 1.25em;
+    }
+
+    .get-in-touch {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 100px;
+        padding: 50px 0 0 0;
+    }
+
+    .get-in-touch .get-in-msg {
+        width: 100%;
+    }
+
+    .get-in-touch .get-in-msg form label {
+        padding: 10px 0 10px 10px;
+    }
+
+    .get-in-touch .get-in-msg form input {
+        padding: 8px 20px;
+        border: none;
+        border: 1px solid rgb(0, 0, 0, .1);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+        border-radius: 10px;
+        outline: none;
+        transition: .8s ease;
+    }
+
+    .get-in-touch .get-in-msg form input:hover,
+    .get-in-touch .get-in-msg form input:active {
+        border-bottom: 4px solid #000;
+        transition: .8s ease;
+    }
+
+    .get-in-touch .get-in-msg form textarea {
+        padding: 12px 20px;
+        border: none;
+        border: 1px solid rgb(0, 0, 0, .1);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px;
+        border-radius: 10px;
+        outline: none;
+        transition: .8s ease;
+        height: 100px;
+    }
+
+    .get-in-touch .get-in-msg form textarea:hover,
+    .get-in-touch .get-in-msg form textarea:active {
+        border-bottom: 4px solid #000;
+        transition: .8s ease;
+    }
+
+    .get-in-touch .get-in-msg form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .get-in-touch .get-in-msg form input {
+        width: 100%;
+    }
+
+    .get-in-touch .get-in-msg form button {
+        width: 30%;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        margin: 35px 0;
+        background-color: #6aaeff;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .get-in-touch .get-in-msg form button:hover {
+        background-color: #3d3d3b;
+    }
+
+    .get-in-touch .get-in-address {
+        width: 100%;
+        margin-top: -55px;
+    }
+
+    .get-in-touch .get-in-address h1 {
+        font-size: 1.5em;
+        /* text-shadow: 1px 1px #959196; */
+    }
+
+    .get-in-touch .get-in-address p {
+        font-size: 1em;
+        color: #959196;
+    }
+
+    /* main-footer */
+    .main-footer {
+        width: 100%;
+        height: auto;
+        margin: auto;
+        text-align: left;
+        background-color: #303030;
+        padding: 40px 100px;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        color: #fff;
+        grid-gap: 125px;
+    }
+
+    .main-footer div h2 {
+        text-align: left;
+        font-size: 1.25em;
+        color: #fff;
+        letter-spacing: .5px;
+        padding: 10px 0;
+    }
+
+    .main-footer div p {
+        font-size: .9em;
+        color: #fff;
+        letter-spacing: .5px;
+        padding: 5px 0;
+        line-height: 25px;
+    }
+
+    .main-footer .down-link {
+        padding: 20px 0;
+        display: flex;
+        gap: 25px;
+    }
+
+    .main-footer .down-link img {
+        width: 135px;
+        height: 40px;
+        cursor: pointer;
+    }
+
+    /*  */
+</style>
+
+<body>
+    <div class="get-header">
+        <a href="index.html"><ion-icon name="arrow-forward-outline"
+                class="left-arrow"></ion-icon>Home</a>
+    </div>
+    <div class="get-homepage">
+        <div class="get-overlay">
+            <h1>Let's Solve</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur rem ab minus, repudiandae ducimus quo.
+            </p>
+            <button type="">Hire Me</button>
+        </div>
+        <img src="img/chat-4.jpg" alt="">
+    </div>
+    <div class="main-get">
+        <h1>Get in Touch</h1>
+        <p>Say Hello</p>
+        <div class="get-in-touch">
+            <div class="get-in-msg">
+                <form action="">
+                    <label for="">First Name</label>
+                    <input type="text" name="" id="" required>
+                    <label for="">Last Name</label>
+                    <input type="text" name="" id="" required>
+                    <label for="">Email</label>
+                    <input type="email" name="" id="" required>
+                    <label for="">Message</label>
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Type message here...."></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+            <div class="get-in-address">
+                <div class="get-ad">
+                    <h1>Address</h1>
+                    <p>Location : 50D,OFP Society – Lahore.</p>
+                </div>
+                <div class="get-email">
+                    <h1>Address Email</h1>
+                    <p>ahsanali01@plazathemes.com</p>
+                    <p>ahsanali02@plazathemes.com</p>
+                </div>
+                <div class="get-tele">
+                    <h1>Telephone Enquiry</h1>
+                    <p>Hotline 02: (012) 800 456 789-987</p>
+                    <p>Hotline 02: (012) 800 456 789-987</p>
+                </div>
+                <div class="get-info">
+                    <h1>Information</h1>
+                    <p>ahsanali01@plazathemes.com</p>
+                    <p>Hotline 02: (012) 800 456 789-987</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="main-footer">
+        <div class="f-contact">
+            <h2>Contact Us</h2>
+            <p>Drou Demo Store</p>
+            <p>No. 1259 Freedom, New York</p>
+            <p>United States</p>
+            <p>+91-987654321</p>
+            <p>demo@exampledemo.com</p>
+        </div>
+        <div class="f-information">
+            <h2>Information</h2>
+            <p>Product Support</p>
+            <p>Checkout</p>
+            <p>License Policy</p>
+            <p>Affiliate</p>
+        </div>
+        <div class="f-service">
+            <h2>Customer Service</h2>
+            <p>Help Center</p>
+            <p>Redeem Voucher</p>
+            <p>Contact Us</p>
+            <p>Policies & Rules</p>
+        </div>
+        <div class="f-app">
+            <h2>Download Our App</h2>
+            <p>Download our App and get extra 15% Discount on your first Order..!</p>
+            <div class="down-link">
+                <img src="img/page-header.png" alt="">
+                <img src="img/play-app-store.png" alt="">
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <!--  -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://kit.fontawesome.com/2ad8671af9.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

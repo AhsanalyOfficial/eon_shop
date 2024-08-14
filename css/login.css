@@ -1,0 +1,391 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,800&display=swap");
+
+body {
+  background-color: #bbc5df;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-container {
+  width: 70%;
+  height: 575px;
+  background-color: #f2f0f0;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.content {
+  width: 100%;
+  padding: 0 75px;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+}
+
+.logo img {
+  width: 80%;
+  height: 400px;
+  position: relative;
+  /* padding: 0 75px; */
+}
+
+.content h1 {
+  color: #281668;
+  font-size: 40px;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.content .signWith {
+  padding: 0 0 0 20px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+}
+
+.content .signWith img {
+  margin-right: 14px;
+}
+
+.link {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content .google,
+.facebook {
+  border: 1px solid #bbc5df;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  width: 48%;
+  border-radius: 12px;
+  padding: 4px;
+  justify-content: space-around;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.content .google p,
+.facebook p {
+  font-size: 13px;
+}
+
+.content .google img,
+.facebook img {
+  width: 24px;
+}
+
+.content .form {
+  display: flex;
+  flex-direction: column;
+}
+
+.content .form input {
+  width: 100%;
+  padding: 10px 0 10px 14px;
+  border: none;
+  outline: none;
+  margin: 6px 0;
+  border-radius: 12px;
+  /* border: 1px solid #bbc5df; */
+  background-color: #fafcff;
+  color: #281668;
+  box-shadow: rgb(187, 197, 223, 0.35) 0px 5px 15px;
+}
+
+.content .form .checkbox {
+  display: flex;
+  align-items: start;
+  font-size: 13px;
+  padding: 10px 0;
+}
+
+.content .form .checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  margin-right: 10px;
+}
+
+.content .form button {
+  padding: 5px 0;
+  border: none;
+  background-color: #fb4c53;
+  box-shadow: rgb(251, 76, 83, 0.35) 0px 5px 15px;
+  border-radius: 12px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.content .form .account {
+  padding: 14px 0;
+}
+
+.content .form .account a {
+  color: #281668;
+  text-decoration: none;
+  padding-left: 4px;
+}
+
+@media only screen and (max-width: 1350px) {
+  .content .google p,
+  .facebook p {
+    font-size: 12px;
+  }
+
+  .content .google img,
+  .facebook img {
+    width: 20px;
+  }
+}
+
+@media only screen and (max-width: 1260px) {
+  .content .google p,
+  .facebook p {
+    font-size: 10px;
+  }
+
+  .content .google img,
+  .facebook img {
+    width: 18px;
+  }
+
+  .content .signWith {
+    font-size: 12px;
+  }
+
+  .content .form input {
+    padding: 7px 0 7px 10px;
+  }
+
+  .content .form button {
+    padding: 4px 0;
+    font-size: 16px;
+  }
+
+  .content {
+    padding: 0 60px;
+  }
+}
+
+@media only screen and (max-width: 1060px) {
+  .content {
+    padding: 0 40px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .main-container {
+    width: 80%;
+  }
+
+  .content h1 {
+    font-size: 35px;
+  }
+
+  label {
+    padding-left: 6px;
+    font-size: 15px;
+  }
+
+  .content .form .account {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 855px) {
+  .main-container {
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width: 805px) {
+  .content {
+    padding: 0 30px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .logo {
+    width: 0;
+  }
+
+  .content h1 {
+    font-size: 38px;
+  }
+
+  .content {
+    padding: 0 65px;
+  }
+
+  .content .google,
+  .facebook {
+    justify-content: space-evenly;
+    width: 40%;
+  }
+
+  .content .google p,
+  .facebook p {
+    font-size: 13px;
+  }
+
+  .content .google img,
+  .facebook img {
+    width: 22px;
+  }
+
+  .content .form .account {
+    padding: 18px 0;
+  }
+
+  .content .form .account {
+    font-size: 16px;
+  }
+
+  label {
+    padding-left: 6px;
+    font-size: 16px;
+  }
+
+  .content .google,
+  .facebook {
+    margin: 10px 0;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  .content .google,
+  .facebook {
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 605px) {
+  .content .google,
+  .facebook {
+    width: 48%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .content {
+    padding: 0 30px;
+  }
+}
+
+@media only screen and (max-width: 495px) {
+  .content {
+    padding: 0 25px;
+  }
+
+  .main-container {
+    height: 525px;
+  }
+
+  .content .google p,
+  .facebook p {
+    font-size: 11px;
+  }
+
+  .content .google img,
+  .facebook img {
+    width: 20px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  .content .form .account {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .content h1 {
+    font-size: 34px;
+  }
+
+  .content {
+    padding: 0 20px;
+  }
+
+  .content .google p,
+  .facebook p {
+    font-size: 9px;
+  }
+
+  .content .google img,
+  .facebook img {
+    width: 18px;
+  }
+
+  label {
+    font-size: 12px;
+  }
+
+  .content .form .account {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .main-container {
+    height: 475px;
+  }
+
+  .content {
+    padding: 0 17px;
+  }
+
+  .content .google p,
+  .facebook p {
+    font-size: 8px;
+  }
+
+  .content .google img,
+  .facebook img {
+    width: 16px;
+  }
+
+  .content .form input {
+    padding: 6px 0 6px 10px;
+  }
+
+  label {
+    font-size: 11px;
+  }
+
+  .content .form .account {
+    font-size: 11px;
+  }
+}
+@media only screen and (max-width: 280px) {
+  .content .google p,
+  .facebook p {
+    font-size: 6px;
+  }
+  label {
+    font-size: 10px;
+  }
+
+  .content .form .account {
+    font-size: 10px;
+  }
+}

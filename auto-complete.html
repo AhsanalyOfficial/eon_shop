@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script>
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        /* color: #24ab24; */
+    }
+
+    .container {
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        /* background-color: #013d29; */
+        margin: auto;
+        padding: 0 100px;
+    }
+
+    #items {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 20px 0;
+    }
+
+    .card {
+        position: relative;
+        background: #fff;
+        width: 275px;
+        height: auto;
+        margin: 25px 10px;
+        /* box-shadow: 0 5px 25px rgb(1 1 1 / 20%); */
+        /* border-radius: 10px; */
+        /* overflow: hidden; */
+    }
+
+    .card-image {
+        height: 240px;
+        background-color: #f6f6f6;
+        border-radius: 10px;
+    }
+
+    .card-image img {
+        width: 275px;
+        height: 240px;
+        border-radius: 10px;
+        padding: 50px;
+    }
+
+    .card-info {
+        position: relative;
+        color: #222;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .card-info .price-name {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .card-info .price-name h3 {
+        font-size: 1em;
+        padding: 2px 0;
+        font-weight: 550;
+    }
+
+    .card-info p {
+        font-size: .75em;
+        padding: 2px 0;
+    }
+
+    .card-info .paragraph {
+        font-size: .75em;
+    }
+
+    .card-info .edition,
+    .reviews {
+        color: #707070;
+    }
+
+    .card-info .edition {
+        margin-top: 18px;
+    }
+
+    .card-info p span {
+        color: #000;
+        padding-right: 10px;
+    }
+
+    .card-info p .star {
+        color: #24ab24;
+        padding-right: 10px;
+    }
+
+    .card-info .buy {
+        width: 40%;
+        padding: 4px 0;
+        border: 1px solid #3A3A3D;
+        background-color: #ffff;
+        font-size: .75em;
+        color: #3A3A3D;
+        cursor: pointer;
+        border-radius: 15px;
+        margin: 6px 0;
+    }
+
+    .card-info .buy:hover {
+        background-color: #013d29;
+        border: 1px solid #013d29;
+        color: #ffff;
+    }
+
+    .pagination {
+        text-align: center;
+        margin: 30px 30px 60px;
+        margin: 30px auto;
+        width: 100%;
+        user-select: none;
+    }
+
+    .pagination li {
+        display: inline-block;
+        margin: 5px;
+        box-shadow: 0 5px 25px rgb(1 1 1 / 10%);
+    }
+
+    .pagination li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.2em;
+        line-height: 45px;
+    }
+
+    .previous-page,
+    .next-page {
+        background: #013d29;
+        width: 80px;
+        border-radius: 45px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    .previous-page:hover {
+        transform: translateX(-5px);
+    }
+
+    .next-page:hover {
+        transform: translateX(5px);
+    }
+
+    .current-page,
+    .dots {
+        background: #ccc;
+        width: 45px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .active {
+        background: #013d29;
+    }
+
+    .disable {
+        background: #ccc;
+    }
+
+    /* ===== */
+    .search-input {
+        background: transparent;
+        width: 60%;
+        position: relative;
+        /* border-bottom: 1px solid #3A3A3D; */
+        border: none;
+    }
+
+    .search-input input {
+        border-radius: 10px;
+        height: 40px;
+        width: 100%;
+        outline: none;
+        border: none;
+        padding: 0 60px 0 20px;
+        font-size: .9em;
+    }
+
+    .search-input input {
+        color: #ffff;
+        color: #3A3A3D;
+    }
+
+    .search-input .icon {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        height: 55px;
+        width: 55px;
+        text-align: center;
+        line-height: 45px;
+        font-size: 20px;
+        color: #3A3A3D;
+        cursor: pointer;
+    }
+
+    .search-container {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        background-color: #e5e6e4;
+        padding: 0 80px;
+        justify-content: space-between;
+    }
+
+    .search-container .logo img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .search-container .search-login-data {
+        display: flex;
+    }
+
+    .search-container .search-login-data div {
+        display: flex;
+        align-items: center;
+        font-size: .85em;
+        padding: 0 10px;
+    }
+
+    .search-container .search-login-data div div {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        padding: 0 5px;
+    }
+
+    .search-container .search-login-data div div p:nth-child(1) {
+        color: #707070;
+        font-size: .85em;
+    }
+
+    .search-container .search-login-data .heart-icon,
+    .person-icon,
+    .cart-icon {
+        font-size: 2em;
+    }
+
+    .search-container .search-login-data .like-icon {
+        position: relative;
+    }
+
+    .search-container .search-login-data .like-icon .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .search-container .search-login-data .like-icon .overlay p {
+        background-color: #e83823;
+        color: #f4f4f4;
+        border-radius: 50px;
+        padding: 0 4px;
+        text-align: center;
+    }
+
+    .search-container .search-login-data .add-to-cart .cart-icon {
+        position: relative;
+    }
+
+    .search-container .search-login-data .add-to-cart .overlay {
+        position: absolute;
+        top: 25px;
+        right: 122px;
+    }
+
+    .search-container .search-login-data .add-to-cart .overlay p {
+        background-color: #e83823;
+        color: #f4f4f4;
+        border-radius: 50px;
+        padding: 0 4px;
+        text-align: center;
+    }
+
+    /* ====== sort css ====== */
+    .sort-container {
+        display: flex;
+        padding: 40px 0 0 0;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .sort-container p {
+        cursor: pointer;
+        font-size: 1em;
+    }
+
+    a.button {
+        display: inline-block;
+        font-size: 1.1em;
+        cursor: pointer;
+        color: #e83823;
+    }
+
+    .dropdown {
+        position: relative;
+        padding: 0;
+        margin-right: 1em;
+        border: none;
+    }
+
+    .dropdown summary {
+        list-style: none;
+    }
+
+    .dropdown ul {
+        position: absolute;
+        right: -135px;
+        top: 35px;
+        z-index: 2;
+        list-style: none;
+        background-color: #ccc;
+        box-shadow: 0 0 10px #ccc;
+        border-radius: 10px;
+        padding: 4px 14px;
+        width: 170px;
+    }
+
+    .dropdown ul li a:link,
+    .dropdown ul li a:visited {
+        display: inline-block;
+        padding: 4px 0;
+        width: 100%;
+        box-sizing: border-box;
+        text-decoration: none;
+        color: #707070;
+    }
+
+    .dropdown ul li a:hover {
+        color: #fff;
+    }
+
+    /* Close the dropdown with outside clicks */
+    .dropdown>summary::before {
+        display: none;
+    }
+
+    .dropdown[open]>summary::before {
+        content: ' ';
+        display: block;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    /* Homepage */
+    .auto-homepage {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 100px;
+        background-color: #f4f7ff;
+        align-items: center;
+    }
+
+    .auto-homepage img {
+        width: 550px;
+        height: 400px;
+        padding: 40px;
+    }
+
+    .auto-homepage .auto-overlay {
+        width: 500px;
+    }
+
+    .auto-homepage .auto-overlay h1 {
+        font-size: 2.75em;
+        text-shadow: 1px 1px #fb7167;
+    }
+
+    .auto-homepage .auto-overlay button {
+        width: 25%;
+        padding: 6px 0;
+        border: 1px solid #013d29;
+        background-color: #013d29;
+        font-size: 1em;
+        color: #ffff;
+        cursor: pointer;
+        border-radius: 15px;
+        margin: 15px 0 0 0;
+    }
+
+    .auto-homepage .auto-overlay button:hover {
+        border: 1px solid #3A3A3D;
+        color: #3A3A3D;
+        background-color: #ffff;
+    }
+
+    /* =========== */
+    .container-2 {
+        min-height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        /* margin: auto; */
+        /* background-color: #013d29; */
+    }
+
+    .container-2 h1 {
+        width: 100%;
+        text-align: left;
+        padding: 0 175px;
+        font-size: 2em;
+    }
+
+    #items-2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 20px 0;
+    }
+
+    .card-2 {
+        position: relative;
+        background: #fff;
+        width: 275px;
+        height: auto;
+        margin: 25px 10px;
+    }
+
+    .card-2-image {
+        height: 240px;
+        background-color: #f6f6f6;
+        border-radius: 10px;
+    }
+
+    .card-2-image img {
+        width: 275px;
+        height: 240px;
+        border-radius: 10px;
+        padding: 50px;
+    }
+
+    .card-info-2 {
+        position: relative;
+        color: #222;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .card-info-2 .price-name-2 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .card-info-2 .price-name-2 h3 {
+        font-size: 1em;
+        padding: 2px 0;
+        font-weight: 550;
+    }
+
+    .card-info-2 p {
+        font-size: .75em;
+        padding: 2px 0;
+    }
+
+    .card-info-2 .paragraph-2 {
+        font-size: .75em;
+    }
+
+    .card-info-2 .edition-2,
+    .reviews-2 {
+        color: #707070;
+    }
+
+    .card-info-2 .edition-2 {
+        margin-top: 18px;
+    }
+
+    .card-info-2 p span {
+        color: #000;
+        padding-right: 10px;
+    }
+
+    .card-info-2 p .star-2 {
+        color: #24ab24;
+        padding-right: 10px;
+    }
+
+    .card-info-2 .buy-2 {
+        width: 40%;
+        padding: 4px 0;
+        border: 1px solid #3A3A3D;
+        background-color: #ffff;
+        font-size: .75em;
+        color: #3A3A3D;
+        cursor: pointer;
+        border-radius: 15px;
+        margin: 6px 0;
+    }
+
+    .card-info-2 .buy-2:hover {
+        background-color: #013d29;
+        border: 1px solid #013d29;
+        color: #ffff;
+    }
+
+    @media only screen and (max-width: 1440px) {
+        .container-2 h1 {
+            padding: 0 150px;
+        }
+    }
+
+    @media only screen and (max-width: 1024px) {
+        .search-container {
+            padding: 0 40px;
+        }
+
+        .card {
+            margin: 25px;
+        }
+
+        .search-container .search-login-data .add-to-cart .overlay {
+            right: 82px;
+        }
+
+        .auto-homepage img {
+            width: 400px;
+            height: 250px;
+            padding: 15px;
+        }
+
+        .auto-homepage .auto-overlay {
+            width: 100%;
+        }
+
+        .auto-homepage {
+            padding: 0 50px;
+        }
+
+        .auto-homepage .auto-overlay h1 {
+            font-size: 2em;
+        }
+    }
+
+    @media only screen and (max-width: 850px) {
+        .auto-homepage .auto-overlay button {
+            width: 35%;
+        }
+
+        .container,
+        .container-2 {
+            padding: 0 50px;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .search-container .logo img {
+            width: 55px;
+            height: 55px;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-login-data .add-to-cart {
+            position: absolute;
+            right: 25px;
+            bottom: -50px;
+            top: 364px;
+        }
+
+        .search-container .search-login-data .like-icon {
+            position: absolute;
+            right: 120px;
+            bottom: -50px;
+            top: 364px;
+        }
+
+        .sort-container {
+            justify-content: start;
+            padding-left: 40px;
+            gap: 20px;
+        }
+
+        .search-container .search-login-data {
+            width: 120px;
+        }
+
+        .search-container .search-login-data .like-icon .overlay {
+            top: -15px;
+        }
+
+        .search-container .search-login-data .add-to-cart .overlay {
+            right: 43px;
+            top: -15px;
+        }
+
+        .auto-homepage img {
+            width: 325px;
+            height: 230px;
+        }
+
+        .auto-homepage .auto-overlay h1 {
+            font-size: 1.75em;
+        }
+
+        .auto-homepage .auto-overlay button {
+            width: 30%;
+            font-size: .85em;
+        }
+
+        .card,
+        .card-2 {
+            margin: 25px;
+            width: 225px;
+        }
+
+        .card-image,
+        .card-2-image {
+            height: 200px;
+        }
+
+        .card-image img,
+        .card-2-image img {
+            width: 225px;
+            height: 200px;
+            /* padding: 50px; */
+        }
+    }
+
+    @media only screen and (max-width: 650px) {
+
+        .card,
+        .card-2 {
+            margin: 10px;
+            width: 225px;
+        }
+
+        .auto-homepage img {
+            width: 270px;
+            height: 200px;
+            padding: 10px 0;
+        }
+
+        .auto-homepage {
+            padding: 0 25px;
+        }
+
+        .search-container {
+            padding: 0px 20px;
+        }
+
+        .auto-homepage .auto-overlay h1 {
+            font-size: 1.45em;
+        }
+
+        .auto-homepage .auto-overlay button {
+            width: 28%;
+            padding: 4px 0;
+            margin: 10px 0px;
+            font-size: .7em;
+        }
+
+        .search-login-data .add-to-cart {
+            top: 334px;
+        }
+
+        .search-container .search-login-data .like-icon {
+            top: 334px;
+        }
+
+        .search-input input {
+            height: 30px;
+            font-size: 0.75em;
+        }
+
+        .search-input .icon {
+            top: -5px;
+        }
+
+        .search-input .icon .search {
+            font-size: .85em;
+        }
+
+        .sort-container p {
+            font-size: .85em;
+        }
+
+        a.button {
+            font-size: .9em;
+        }
+
+        .sort-container {
+            gap: 14px;
+        }
+    }
+
+    @media only screen and (max-width: 590px) {
+
+        .card,
+        .card-2 {
+            margin: 10px 25px;
+            width: 250px;
+        }
+
+        .card-image,
+        .card-2-image {
+            height: 225px;
+        }
+
+        .card-image img,
+        .card-2-image img {
+            width: 250px;
+            height: 225px;
+        }
+
+        .auto-homepage .auto-overlay button {
+            width: 40%;
+            font-size: .75em;
+        }
+    }
+
+    @media only screen and (max-width: 515px) {
+        .auto-homepage img {
+            width: 225px;
+            height: 170px;
+        }
+
+        .auto-homepage .auto-overlay h1 {
+            font-size: 1.2em;
+        }
+
+        .auto-homepage .auto-overlay button {
+            width: 35%;
+            font-size: .65em;
+        }
+
+        .search-container .logo img {
+            width: 45px;
+            height: 45px;
+        }
+
+        .search-input input {
+            height: 25px;
+            font-size: 0.55em;
+        }
+
+        .search-input .icon {
+            top: -8px;
+        }
+
+        .search-input .icon .search {
+            font-size: .65em;
+        }
+
+        .sort-container p {
+            font-size: .9em;
+        }
+
+        a.button {
+            font-size: .95em;
+        }
+
+        .sort-container {
+            justify-content: center;
+            padding-left: 0;
+            gap: 15px;
+            padding-top: 85px;
+        }
+
+        .search-login-data .add-to-cart {
+            top: 275px;
+        }
+
+        .search-container .search-login-data .like-icon {
+            top: 275px;
+        }
+
+        .auto-homepage {
+            position: relative;
+        }
+
+        .auto-homepage img {
+            width: 400px;
+            padding: 10px 0 10px 100px;
+        }
+
+        .auto-homepage .auto-overlay {
+            position: absolute;
+            width: 100%;
+        }
+
+        .auto-homepage .auto-overlay h1 {
+            font-size: 1.25em;
+        }
+
+        .auto-homepage .auto-overlay button {
+            width: 25%;
+        }
+
+        .search-input {
+            width: 50%;
+        }
+
+        .search-input input {
+            padding: 0 35px 0 12px;
+        }
+
+        .search-input .icon {
+            right: -10px;
+        }
+
+        .search-container {
+            padding: 0px 10px;
+            height: 55px;
+        }
+
+        .person-icon {
+            font-size: 1.75em;
+        }
+
+        .search-container .search-login-data div div p:nth-child(1) {
+            font-size: .75em;
+        }
+
+        .search-container .search-login-data div div p:nth-child(2) {
+            font-size: .75em;
+        }
+
+        .search-container .search-login-data {
+            width: 90px;
+        }
+    }
+
+    @media only screen and (max-width: 375px) {
+        .sort-container p {
+            font-size: .75em;
+        }
+
+        a.button {
+            font-size: .8em;
+        }
+
+        .auto-homepage img {
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .auto-homepage .auto-overlay {
+            width: 80%;
+            margin: auto;
+        }
+
+        .auto-homepage .auto-overlay h1 {
+            font-size: 1.25em;
+        }
+    }
+</style>
+
+<body>
+
+    <div class="search-container">
+        <div class="logo">
+            <img src="img/search-logo (5).png" alt="" />
+        </div>
+        <div class="search-input">
+            <input type="text" id="search" placeholder="What are you looking for?">
+            <div class="icon"><ion-icon name="search-outline" class="search" id="search"></ion-icon></div>
+        </div>
+        <div class="search-login-data">
+            <div class="login-icon">
+                <ion-icon name="person-outline" class="person-icon"></ion-icon>
+                <div class="logo-icon-data">
+                    <p>Sign In</p>
+                    <p>Account</p>
+                </div>
+            </div>
+            <div class="like-icon">
+                <ion-icon name="heart-outline" class="heart-icon"></ion-icon>
+                <div class="overlay">
+                    <p>7</p>
+                </div>
+            </div>
+            <div class="add-to-cart">
+                <ion-icon name="cart-outline" class="cart-icon"></ion-icon>
+                <div class="overlay">
+                    <p id="incre">0</p>
+                </div>
+                <div class="add-to-cart-data">
+                    <p>Total</p>
+                    <p>$0.00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="auto-homepage">
+        <div class="auto-overlay">
+            <h1>Grab Upto 50% Off On Selected Headphone</h1>
+            <button type="button">Buy Now</button>
+        </div>
+        <img src="img/7256.png" alt="">
+    </div>
+    <div class="sort-container">
+        <p>Home</p>
+        <p>Today's Deals</p>
+        <p>Trending Product</p>
+        <details class="dropdown">
+            <summary role="button">
+                <a class="button">Sort</a>
+            </summary>
+            <ul>
+                <li><a href="#">Featured</a></li>
+                <li><a href="#">Best Selling</a></li>
+                <li><a href="#">Price, Low to High</a></li>
+                <li><a href="#">Price, High to Low</a></li>
+                <li><a href="#">Date, New to Old</a></li>
+                <li><a href="#">Date, Old to New</a></li>
+            </ul>
+        </details>
+    </div>
+    <div class="container">
+        <div id="items" class="card-content" style="display: none">
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (2).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" onclick="myCounter()" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (4).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (3).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (1).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (2).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (2).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image"><img src="img/headphone (2).png" alt=""></div>
+                <div class="card-info">
+                    <div class="price-name">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews"><ion-icon name="star-half-outline" class="star"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy">Add to Cart</button>
+                </div>
+            </div>
+            <div class="pagination">
+                <!--<li class="page-item previous-page disable"><a class="page-link" href="#">Prev</a></li>
+                <li class="page-item current-page active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item dots"><a class="page-link" href="#">...</a></li>
+                <li class="page-item current-page"><a class="page-link" href="#">5</a></li>
+                <li class="page-item current-page"><a class="page-link" href="#">6</a></li>
+                <li class="page-item dots"><a class="page-link" href="#">...</a></li>
+                <li class="page-item current-page"><a class="page-link" href="#">10</a></li>
+                <li class="page-item next-page"><a class="page-link" href="#">Next</a></li>-->
+            </div>
+        </div>
+    </div>
+    <div class="container-2">
+        <h1>Recently Viewed</h1>
+        <div id="items-2">
+            <div class="card-2">
+                <div class="card-2-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info-2">
+                    <div class="price-name-2">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph-2">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews-2"><ion-icon name="star-half-outline"
+                            class="star-2"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy-2">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card-2">
+                <div class="card-2-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info-2">
+                    <div class="price-name-2">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph-2">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews-2"><ion-icon name="star-half-outline"
+                            class="star-2"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy-2">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card-2">
+                <div class="card-2-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info-2">
+                    <div class="price-name-2">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph-2">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews-2"><ion-icon name="star-half-outline"
+                            class="star-2"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy-2">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card-2">
+                <div class="card-2-image"><img src="img/headphone (5).png" alt=""></div>
+                <div class="card-info-2">
+                    <div class="price-name-2">
+                        <h3>Airpods Pro</h3>
+                        <h3>$559</h3>
+                    </div>
+                    <!-- <p class="edition">Limited Edition</p> -->
+                    <p class="paragraph-2">A perfect balance of high-fedilty audio</p>
+                    <p class="reviews-2"><ion-icon name="star-half-outline"
+                            class="star-2"></ion-icon><span>4.9</span>(1299
+                        reviews)</p>
+                    <button type="button" class="buy-2">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const searchInput = document.getElementById('search');
+        const items = document.querySelectorAll('.card');
+
+        searchInput.addEventListener('input', function () {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            items.forEach(item => {
+                const title = item.querySelector('h3').textContent.toLowerCase();
+                const description = item.querySelector('p').textContent.toLowerCase();
+
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function getPageList(totalPages, page, maxLength) {
+            function range(start, end) {
+                return Array.from(Array(end - start + 1), (_, i) => i + start);
+            }
+
+            var sideWidth = maxLength < 9 ? 1 : 2;
+            var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+            var rightWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+
+            if (totalPages <= maxLength) {
+                return range(1, totalPages);
+            }
+
+            if (page <= maxLength - sideWidth - 1 - rightWidth) {
+                return range(1, maxLength - sideWidth - 1).concat(0, range(totalPages - sideWidth + 1, totalPages));
+            }
+
+            if (page >= totalPages - sideWidth - 1 - rightWidth) {
+                return range(1, sideWidth).concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+            }
+
+            return range(1, sideWidth).concat(0, range(page - leftWidth, page + rightWidth), 0, range(totalPages - sideWidth + 1, totalPages));
+        }
+
+        $(function () {
+            var numberOfItems = $(".card-content .card").length;
+            var limitPerPage = 8; //How many card items visible per a page
+            var totalPages = Math.ceil(numberOfItems / limitPerPage);
+            var paginationSize = 7; //How many page elements visible in the pagination
+            var currentPage;
+
+            function showPage(whichPage) {
+                if (whichPage < 1 || whichPage > totalPages) return false;
+
+                currentPage = whichPage;
+
+                $(".card-content .card").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+
+                $(".pagination li").slice(1, -1).remove();
+
+                getPageList(totalPages, currentPage, paginationSize).forEach(item => {
+                    $("<li>").addClass("page-item").addClass(item ? "current-page" : "dots")
+                        .toggleClass("active", item === currentPage).append($("<a>").addClass("page-link")
+                            .attr({ href: "javascript:void(0)" }).text(item || "...")).insertBefore(".next-page");
+                });
+
+                $(".previous-page").toggleClass("disable", currentPage === 1);
+                $(".next-page").toggleClass("disable", currentPage === totalPages);
+                return true;
+            }
+
+            $(".pagination").append(
+                $("<li>").addClass("page-item").addClass("previous-page").append($("<a>").addClass("page-link").attr({ href: "javascript:void(0)" }).text("Prev")),
+                $("<li>").addClass("page-item").addClass("next-page").append($("<a>").addClass("page-link").attr({ href: "javascript:void(0)" }).text("Next"))
+            );
+
+            $(".card-content").show();
+            showPage(1);
+
+            $(document).on("click", ".pagination li.current-page:not(.active)", function () {
+                return showPage(+$(this).text());
+            });
+
+            $(".next-page").on("click", function () {
+                return showPage(currentPage + 1);
+            });
+
+            $(".previous-page").on("click", function () {
+                return showPage(currentPage - 1);
+            });
+        });
+    </script>
+    <!-- Javascript Icon Link -->
+    <script src="js/script.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://kit.fontawesome.com/2ad8671af9.js" crossorigin="anonymous"></script>
+    <!--  -->
+    <script>
+        const add = (function () {
+            let counter = 0;
+            return function () {
+                counter += 1;
+                return counter;
+            }
+        })();
+        function myCounter() {
+            document.getElementById('incre').innerHTML = add();
+        }
+    </script>
+</body>
+
+</html>
